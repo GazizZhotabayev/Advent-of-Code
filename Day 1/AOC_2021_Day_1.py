@@ -1,4 +1,4 @@
-import csv, os, sys
+import os, sys
 
 file_name = 'input_day_1.txt'
 with open(os.path.join(sys.path[0], file_name)) as f:
@@ -8,11 +8,9 @@ with open(os.path.join(sys.path[0], file_name)) as f:
 #f will count the # of times there was an increase in consecutive numbers of a list
 f = lambda lst: sum(1 if lst[i+1] > e else 0 for i, e in enumerate(lst[:-1]))
 
-ans1 = f(lst1)
-print(f'answer to first puzzle of day 1 is: {ans1}')
+print(f'answer to first puzzle of day 1 is: {f(lst1)}')
 
 #transform the list to a rolling 3 window
 lst2 = [sum(lst1[i:i+3]) for i, e in enumerate(lst1[:-2])]
 
-ans2 = f(lst2)
-print(f'answer to second puzzle of day 1 is: {ans2}')
+print(f'answer to second puzzle of day 1 is: {f(lst2)}')
