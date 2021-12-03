@@ -1,8 +1,10 @@
 import os, sys
 
 file_name = 'input_day_3.txt'
+day = file_name.split('.')[0].split('_')[-1]
+
 with open(os.path.join(sys.path[0], file_name)) as f:
-    lst = [i for i in f.read().split('\n') if i != '']
+    lst = [line for line in f.read().split('\n') if line != '']
 
     #transpose list of strings
     transpose = lambda x: [''.join(line[i] for line in x) for i in range(len(x[0]))]
@@ -14,7 +16,7 @@ with open(os.path.join(sys.path[0], file_name)) as f:
     gamma = ''.join(g(line) for line in transpose(lst))
     epsilon = ''.join('1' if i == '0' else '0' for i in gamma)
 
-    print(f'answer to first puzzle of day 3 is: {int(gamma, 2) * int(epsilon, 2)}')
+    print(f'answer to first puzzle of day {day} is: {int(gamma, 2) * int(epsilon, 2)}')
 
     oxygen_lst = lst[:]
     co2_lst = lst[:]
@@ -31,4 +33,4 @@ with open(os.path.join(sys.path[0], file_name)) as f:
         co2_lst = [n for n in co2_lst if n[i] == least_common]
         i += 1
     
-    print(f'answer to second puzzle of day 3 is: {int(oxygen_lst[0], 2) * int(co2_lst[0], 2)}')
+    print(f'answer to second puzzle of day {day} is: {int(oxygen_lst[0], 2) * int(co2_lst[0], 2)}')
