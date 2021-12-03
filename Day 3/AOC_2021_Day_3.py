@@ -32,4 +32,4 @@ with open(os.path.join(sys.path[0], file_name)) as f:
         co2_lst = [n for n in co2_lst if n[i] == least_common]
         i += 1
     
-    print(f'answer to first puzzle of day 3 is: {int(oxygen_lst[0], 2) * int(co2_lst[0], 2)}')
+    print(f'answer to second puzzle of day 3 is: {int(oxygen_lst[0], 2) * int(co2_lst[0], 2)}')
