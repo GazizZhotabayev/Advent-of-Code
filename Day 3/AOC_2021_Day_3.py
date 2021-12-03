@@ -1,5 +1,4 @@
 import os, sys
-from collections import Counter
 
 file_name = 'input_day_3.txt'
 with open(os.path.join(sys.path[0], file_name)) as f:
@@ -8,7 +7,7 @@ with open(os.path.join(sys.path[0], file_name)) as f:
     #transpose list of strings
     transpose = lambda x: [''.join(line[i] for line in x) for i in range(len(x[0]))]
     
-    #get the most common value in lst (with tiebreaker rules)
+    #get the most/least common value in lst (with tiebreaker rules)
     g = lambda x: '1' if x.count('1') >= x.count('0') else '0'
     e = lambda x: '0' if x.count('1') >= x.count('0') else '1'
 
