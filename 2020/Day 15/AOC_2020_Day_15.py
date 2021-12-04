@@ -1,5 +1,6 @@
 import os, sys
 
+file_name = 'input_day_15.txt'
 day = file_name.split('.')[0].split('_')[-1]
 
 last_index = lambda arr, x: len(arr) - arr[::-1].index(x) - 1
