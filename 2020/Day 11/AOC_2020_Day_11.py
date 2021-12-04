@@ -1,7 +1,6 @@
 import os, sys
 
 file_name = 'input_day_11.txt'
-#file_name = 'test_11.txt'
 day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
