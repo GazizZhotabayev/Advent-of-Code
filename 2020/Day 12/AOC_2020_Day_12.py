@@ -79,4 +79,4 @@ with open(os.path.join(sys.path[0], file_name)) as f:
         x, y, waypoint = move_2(line[0], int(line[1:]), x, y, waypoint)
         
     ans2 = abs(x) + abs(y)
-    print(f'answer to first puzzle of day {day} is: {ans2}')
+    print(f'answer to second puzzle of day {day} is: {ans2}')
