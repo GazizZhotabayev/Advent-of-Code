@@ -7,7 +7,7 @@ day = file_name.split('.')[0].split('_')[-1]
 with open(os.path.join(sys.path[0], file_name)) as f:
     lines = [line for line in f.read().split('\n')]
 
-    def count_points(grid, diagonal = False):
+    def count_points(lines, diagonal = False):
         points = []
         for line in lines:
             p1, p2 = line.split(' -> ')
