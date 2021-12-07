@@ -1,5 +1,4 @@
 import os, sys
-from functools import partial
 
 file_name = 'input_day_7.txt'
 day = file_name.split('.')[0].split('_')[-1]
