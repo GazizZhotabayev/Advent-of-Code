@@ -1,27 +1,18 @@
 import os, sys
-from collections import Counter
+from functools import partial
 
-file_name = 'input_day_6.txt'
+file_name = 'input_day_7.txt'
 day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
-    fishes = Counter([int(i) for i in f.read().split(',')])
+    crabs = [int(i) for i in f.read().split(',')]
 
-    memory = {}
-    #counts a single fish's offspring (and itself) 
-    def count_fish(timer, days):
-        try:
-            return memory[(timer, days)]
-        except:
-            ans = count_fish(6, days - timer - 1) + count_fish(8, days - timer - 1) if days > timer else 1
-            memory[(timer, days)] = ans
-            return ans
-    
-    def count_school(school, days):
-        return sum(n * count_fish(timer, days) for timer, n in school.items())
+    gaps = lambda lst, pos: sum(abs(x-pos) for i, x in enumerate(lst))
 
-    ans1 = count_school(fishes, 80)
+    ans1 = min([gaps(crabs, i) for i in range(min(crabs), max(crabs) + 1)])
     print(f'answer to first puzzle of day {day} is: {ans1}')
 
-    ans2 = count_school(fishes, 256)
+    sum_to_n = lambda n: (n * (n+1)) // 2
+    gaps2 = lambda lst, pos: sum(sum_to_n(abs(x-pos)) for i, x in enumerate(lst))
+    ans2 = min([gaps2(crabs, i) for i in range(min(crabs), max(crabs) + 1)])
     print(f'answer to second puzzle of day {day} is: {ans2}')
