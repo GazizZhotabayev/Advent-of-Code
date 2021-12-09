@@ -17,6 +17,7 @@ with open(os.path.join(sys.path[0], file_name)) as f:
         DIGITS, LETTERS = dict(), dict()
         pattern, value = line.split(' | ')
         pattern, value = pattern.split(), value.split()    
+        
         DIGITS[1] = [digit for digit in pattern if len(digit) == 2][0]
         DIGITS[4] = [digit for digit in pattern if len(digit) == 4][0]
         DIGITS[7] = [digit for digit in pattern if len(digit) == 3][0]
@@ -39,7 +40,6 @@ with open(os.path.join(sys.path[0], file_name)) as f:
 
         REVERSED_DIGITS = {''.join(sorted(letters)): str(digit) for digit, letters in DIGITS.items()}
         return ''.join(REVERSED_DIGITS[''.join(sorted(letters))] for letters in value)
-
 
     ans2 = sum(int(parse_line(line)) for line in lst)
     print(f'answer to second puzzle of day {day} is: {ans2}')
