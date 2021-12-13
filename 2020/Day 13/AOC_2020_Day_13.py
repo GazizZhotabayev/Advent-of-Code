@@ -1,7 +1,6 @@
 import os, sys
 
 file_name = 'input_day_13.txt'
-file_name = 'test_13.txt'
 day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
@@ -16,14 +15,18 @@ with open(os.path.join(sys.path[0], file_name)) as f:
     ans1 = buses[0] * (smallest_multiple_greater(int(timestamp), buses[0]) - int(timestamp))
     print(f'answer to first puzzle of day {day} is: {ans1}')
 
-    timetable = [(int(bus), i) for i, bus in enumerate(timetable.split(',')) if bus != 'x']
-    gap = max(timetable, key = lambda x: x[0])
-    ans2 = gap[0] + gap[1]
-    while True:
-        ans2 += gap[0]
-        print(ans2)
-        for bus, i in timetable:
-            if (ans2 + i) % bus != 0: break
-        if i == timetable[-1][1]: break
+    timetable = [(int(bus), (int(bus)-i) % int(bus)) for i, bus in enumerate(timetable.split(',')) if bus != 'x']
+    #chinese remainder theorem
 
+    #https://en.wikipedia.org/wiki/Chinese_remainder_theorem#Search_by_sieving
+    n, x = 1, timetable[0][1]
+    while len(timetable) > 1:
+        n *= timetable[0][0]
+        timetable = timetable[1:]
+        while True:
+            if x % timetable[0][0] == timetable[0][1]: 
+                break
+            x += n
+
+    ans2 = x
     print(f'answer to second puzzle of day {day} is: {ans2}')
