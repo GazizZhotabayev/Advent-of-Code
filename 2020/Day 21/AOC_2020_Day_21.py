@@ -2,7 +2,7 @@ import os, sys
 from itertools import permutations
 
 file_name = 'input_day_21.txt'
-#file_name = 'test_21.txt'
+file_name = 'test_21.txt'
 day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
@@ -27,4 +27,5 @@ with open(os.path.join(sys.path[0], file_name)) as f:
     for line in lst:
         parse_line(line)
 
-    print(len(FOOD), len(ALLERGENS))
+    print(FOOD)
+    print(ALLERGENS)
