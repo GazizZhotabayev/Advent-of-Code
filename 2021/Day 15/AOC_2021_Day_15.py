@@ -21,7 +21,8 @@ with open(os.path.join(sys.path[0], file_name)) as f:
         while True:
             x, y = current
             UNVISITED.remove((x, y))
-            print(len(VISITED))
+            l = len(VISITED)
+            if l % 10000 == 0: print(l)
             neighbours = [(x+i, y+j) for i, j in coords if 0 <= x+i < m and 0 <= y+j < n and (x+i, y+j) not in VISITED]
 
             for u, v in neighbours:
@@ -32,6 +33,7 @@ with open(os.path.join(sys.path[0], file_name)) as f:
             VISITED.add(current)
             if len(VISITED) < m * n:
                 current = min(UNVISITED, key = lambda t: RISK[t[0]][t[1]])
+                if current == (m-1, n-1): break
             else:
                 break
         
@@ -45,7 +47,8 @@ with open(os.path.join(sys.path[0], file_name)) as f:
     for i in range(len(BLOCK)):
         for j in range(len(BLOCK[0])):
             k, l = i // m, j // n
-            BLOCK[i][j] = block[i%m][j%n] + k + l if block[i%m][j%n] + k + l < 10 else block[i%m][j%n] + k + l - 9 
+            x = block[i%m][j%n] + k + l
+            BLOCK[i][j] = x if x < 10 else x - 9 
     
     ans2 = solve(BLOCK)
     print(f'answer to second puzzle of day {day} is: {ans2}')
