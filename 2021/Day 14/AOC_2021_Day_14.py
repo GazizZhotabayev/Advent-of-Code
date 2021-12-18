@@ -18,17 +18,35 @@ with open(os.path.join(sys.path[0], file_name)) as f:
     def step(line):
         return ''.join(RULES.get(c + line[i+1]) for i, c in enumerate(line[:-1])) + line[-1]
 
+    line = LINE
     for i in range(10):
-        print(LINE[:100])
-        LINE = step(LINE)
+        #print(LINE[:100])
+        line = step(line)
         
         #c = sorted([v for k, v in Counter(LINE).items()])
         #print(c[-1] - c[0])
-        #print(Counter(LINE))
+        #c = Counter(LINE)
+        #min_c, max_c, sum_c = min(c.values()), max(c.values()), sum(c.values())
+        #print(float(min_c / sum_c), float(max_c / sum_c), sum_c)
 
-    c = sorted([v for k, v in Counter(LINE).items()])
+    c = sorted([v for k, v in Counter(line).items()])
     ans1 = c[-1] - c[0]
     print(f'answer to first puzzle of day {day} is: {ans1}')
+
+    SOLUTION = {letter: 0 for letter in set(LINE)}
+    COUNTERS = {}
+    for rule in RULES:
+        line = rule
+        for i in range(20):
+            line = step(line)
+        COUNTERS[rule] = Counter(line)
+
+    line = LINE
+    for i in range(20):
+        line = step(line)
+        pairs = [''.join(line[i:i+2]) for i in range(len(line)-1)]
+        PAIRS_COUNTER = Counter(pairs)
+        print(PAIRS_COUNTER)
 
     ans2 = 0
     print(f'answer to second puzzle of day {day} is: {ans2}')
