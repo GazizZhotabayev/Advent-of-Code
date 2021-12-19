@@ -2,7 +2,7 @@ import os, sys
 from collections import Counter
 
 file_name = 'input_day_14.txt'
-file_name = 'test_14.txt'
+#file_name = 'test_14.txt'
 day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
@@ -20,20 +20,13 @@ with open(os.path.join(sys.path[0], file_name)) as f:
 
     line = LINE
     for i in range(10):
-        #print(LINE[:100])
         line = step(line)
-        
-        #c = sorted([v for k, v in Counter(LINE).items()])
-        #print(c[-1] - c[0])
-        #c = Counter(LINE)
-        #min_c, max_c, sum_c = min(c.values()), max(c.values()), sum(c.values())
-        #print(float(min_c / sum_c), float(max_c / sum_c), sum_c)
 
-    c = sorted([v for k, v in Counter(line).items()])
-    ans1 = c[-1] - c[0]
+    c = Counter(line)
+    ans1 = max(c.values()) - min(c.values())
     print(f'answer to first puzzle of day {day} is: {ans1}')
 
-    SOLUTION = {letter: 0 for letter in set(LINE)}
+    SOLUTION = {letter: 0 for letter in set(''.join(RULES.keys()))}
     COUNTERS = {}
     for rule in RULES:
         line = rule
@@ -44,9 +37,15 @@ with open(os.path.join(sys.path[0], file_name)) as f:
     line = LINE
     for i in range(20):
         line = step(line)
-        pairs = [''.join(line[i:i+2]) for i in range(len(line)-1)]
-        PAIRS_COUNTER = Counter(pairs)
-        print(PAIRS_COUNTER)
+    
+    pairs = [''.join(line[i:i+2]) for i in range(len(line)-1)]
+    PAIRS_COUNTER = Counter(pairs)
+    
+    for pair, pair_cnt in PAIRS_COUNTER.items():
+        for letter, letter_cnt in COUNTERS[pair].items():
+            SOLUTION[letter] += pair_cnt * letter_cnt
+            if pair[0] == letter:
+                SOLUTION[letter] -= pair_cnt
 
-    ans2 = 0
+    ans2 = max(SOLUTION.values()) - min(SOLUTION.values()) + 1
     print(f'answer to second puzzle of day {day} is: {ans2}')
