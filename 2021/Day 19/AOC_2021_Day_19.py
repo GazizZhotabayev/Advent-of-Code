@@ -1,5 +1,6 @@
 import os, sys
 import numpy as np
+from numpy.lib import dsplit
 
 file_name = 'input_day_19.txt'
 file_name = 'test_19.txt'
@@ -13,31 +14,21 @@ with open(os.path.join(sys.path[0], file_name)) as f:
         n = int(''.join(i for i in scanner[0] if i.isnumeric()))
         SCANNERS[n] = [[eval(line) for line in scanner[1:]]]
     
-    r1 = lambda x,y,z: (x,y,z)
-    r2 = lambda x,y,z: (x,z,-y)
-    r3 = lambda x,y,z: (x,-z,y)
-    r4 = lambda x,y,z: (x,y,z)
-    r5 = lambda x,y,z: (x,y,z)
-    r6 = lambda x,y,z: (x,y,z)
-    r7 = lambda x,y,z: (x,y,z)
-    r8 = lambda x,y,z: (x,y,z)
-    r9 = lambda x,y,z: (x,y,z)
-    r10 = lambda x,y,z: (x,y,z)
-    r11 = lambda x,y,z: (x,y,z)
-    r12 = lambda x,y,z: (x,y,z)
-    r13 = lambda x,y,z: (x,y,z)
-    r14 = lambda x,y,z: (x,y,z)
-    r15 = lambda x,y,z: (x,y,z)
-    r16 = lambda x,y,z: (x,y,z)
-    r17 = lambda x,y,z: (x,y,z)
-    r18 = lambda x,y,z: (x,y,z)
-    r19 = lambda x,y,z: (x,y,z)
-    r20 = lambda x,y,z: (x,y,z)
-    r21 = lambda x,y,z: (x,y,z)
-    r22 = lambda x,y,z: (x,y,z)
-    r23 = lambda x,y,z: (x,y,z)
-    r24 = lambda x,y,z: (x,y,z)
+    def rotate(p, M):
+        x = np.matmul(M, np.array(p).reshape((3,1)))
+        return tuple(x.reshape((1,3)).tolist()[0])
 
+    def rotate_x(p):
+        return rotate(p, np.array([[1,0,0], [0,0,-1], [0,1,0]]))
+
+    def rotate_y(p):
+        return rotate(p, np.array([[0,0,1], [0,1,0], [-1,0,0]]))
+
+    def rotate_z(p):
+        return rotate(p, np.array([[0,-1,0], [1,0,0], [0,0,1]]))
+
+    def dist_vector(p1, p2):
+        return tuple(p2[i] - p1[i] for i in range(3))
 
     ans1 = 0
     print(f'answer to first puzzle of day {day} is: {ans1}')

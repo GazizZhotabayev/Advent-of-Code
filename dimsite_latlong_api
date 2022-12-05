@@ -1,0 +1,13 @@
+import requests
+import json
+
+subscription_key = "hB_XrUqjV-zy_no7QGEysHPMITyi7MAg2sRbEClN5Ug"
+queries = ["B&Q ABBOTSINCH RETAIL PARK, PA3 4EP, UK","ABBOTSINCH RETAIL PARK, PA3 4EP, UK"]
+
+for query in queries:
+    request = f"https://atlas.microsoft.com/search/fuzzy/json?api-version=1.0&query={query}&subscription-key={subscription_key}&maxFuzzyLevel=4"
+    response = requests.get(request)
+    data = response.json()
+    print(f'\n {query} \n')
+    print(json.dumps(data, indent=2))
+    
