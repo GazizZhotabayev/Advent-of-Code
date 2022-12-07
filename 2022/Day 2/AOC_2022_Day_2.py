@@ -1,7 +1,6 @@
 import os, sys
 
 file_name = 'input_day_2.txt'
-day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
     lst = [line.split() for line in f.read().split('\n')] 
@@ -17,7 +16,7 @@ def score(x, y):
 
 lst1 = [score(hand[0], hand[1]) + hand[1] for hand in lst]
 ans1 = sum(lst1)
-print(f'answer to first puzzle of day {day} is: {ans1}')
+print(f'answer to first puzzle is: {ans1}')
 
 def choice(x, y):
     if y == 2: return x
@@ -32,4 +31,4 @@ def choice(x, y):
 
 lst2 = [score(hand[0], choice(hand[0], hand[1])) + choice(hand[0], hand[1]) for hand in lst]
 ans2 = sum(lst2)
-print(f'answer to second puzzle of day {day} is: {ans2}')
+print(f'answer to second puzzle is: {ans2}')

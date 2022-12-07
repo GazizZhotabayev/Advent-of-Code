@@ -1,7 +1,6 @@
 import os, sys
 
 file_name = 'input.txt'
-day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
     lst = [line.split(',') for line in f.read().split('\n')] 
@@ -18,6 +17,6 @@ for pair in lst:
     if (a <= y and b >= x) or (a >= y and b <= x):
         ans2 += 1
 
-print(f'answer to first puzzle of day {day} is: {ans1}')
+print(f'answer to first puzzle is: {ans1}')
 
-print(f'answer to second puzzle of day {day} is: {ans2}')
+print(f'answer to second puzzle is: {ans2}')

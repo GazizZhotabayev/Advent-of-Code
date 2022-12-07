@@ -1,7 +1,6 @@
 import os, sys
 
 file_name = 'input.txt'
-day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
     instructions = f.read().split('\n')
@@ -55,11 +54,11 @@ while len(directory_sizes) < len(directories):
         size(directory)
 
 ans1 = sum(v for k, v in directory_sizes.items() if v <= 100000)
-print(f'answer to first puzzle of day {day} is: {ans1}')
+print(f'answer to first puzzle is: {ans1}')
 
 used_space = directory_sizes['/']
 unused_space = 70000000 - used_space
 gap = 30000000 - unused_space
 
 ans2 = min(v for k, v in directory_sizes.items() if v >= gap)
-print(f'answer to second puzzle of day {day} is: {ans2}')
+print(f'answer to second puzzle is: {ans2}')

@@ -1,7 +1,6 @@
 import os, sys
 
 file_name = 'input.txt'
-day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
     stacks, instructions = f.read().split('\n\n') 
@@ -23,8 +22,8 @@ def parse(instruction, cratemover):
 
 #for instruction in instructions: parse(instruction, 9000)
 #ans1 = ''.join(stacks[i][0] for i in range(len(stacks)))
-#print(f'answer to first puzzle of day {day} is: {ans1}')
+#print(f'answer to first puzzle is: {ans1}')
 
 for instruction in instructions: parse(instruction, 9001)
 ans2 = ''.join(stacks[i][0] for i in range(len(stacks)))
-print(f'answer to second puzzle of day {day} is: {ans2}')
+print(f'answer to second puzzle is: {ans2}')
