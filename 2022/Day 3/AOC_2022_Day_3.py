@@ -4,7 +4,6 @@ file_name = 'input_day_3.txt'
 day = file_name.split('.')[0].split('_')[-1]
 
 with open(os.path.join(sys.path[0], file_name)) as f:
-    #parse the .txt into a list of integers
     lst = [line for line in f.read().split('\n')] 
 
 convert = lambda x: ord(x) - 96 if x.islower() else convert(x.lower()) + 26
